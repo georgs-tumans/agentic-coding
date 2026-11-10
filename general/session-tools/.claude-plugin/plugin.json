@@ -1,0 +1,5 @@
+{
+  "name": "session-tools",
+  "description": "Universal helpers for working with agent sessions, independent of any project",
+  "author": { "name": "Georgs" }
+}

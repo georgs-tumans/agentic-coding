@@ -1,0 +1,16 @@
+{
+  "name": "agentic-coding",
+  "owner": { "name": "Georgs" },
+  "plugins": [
+    {
+      "name": "document-tools",
+      "source": "./general/document-tools",
+      "description": "Read, search and cite Word .docx files the way Word shows them (skill + scripts)"
+    },
+    {
+      "name": "session-tools",
+      "source": "./general/session-tools",
+      "description": "Universal helpers for agent sessions (handoff document for a fresh agent)"
+    }
+  ]
+}
