@@ -10,10 +10,20 @@ marketplace: `agentic-coding`.
 
 ## General coding guidelines
 
-`DEVELOPMENT.md` is a rulebook for all agentic coding (style, testing, git, planning, output
+`DEVELOPMENT.md` is a rulebook for all agentic coding (principles, comments, testing,
+verification before calling work done, per-language check commands, git, plans and docs, output
 format), independent of the plugins. To apply it in every session, whatever the workspace, import
 it from `~/.claude/CLAUDE.md` with `@/absolute/path/to/DEVELOPMENT.md`. Keep the path free of
-spaces, since imports may not parse them.
+spaces, since imports may not parse them. To load it only when a task touches code, keep it out
+of the import and instead tell the agent in a global `AGENTS.md` (imported from
+`~/.claude/CLAUDE.md`) to read `/absolute/path/to/DEVELOPMENT.md` before coding work.
+
+The front-end rule in `DEVELOPMENT.md` names two external skills that this repo does not ship:
+`modern-web-guidance` and `chrome-extensions`, both from
+[GoogleChrome/modern-web-guidance](https://github.com/GoogleChrome/modern-web-guidance).
+Install them with `npx modern-web-guidance@latest install` (an interactive wizard). Without
+`modern-web-guidance` installed, the rule falls back to running `npx modern-web-guidance@latest
+search` directly; `chrome-extensions` has no such fallback.
 
 ## Install
 
