@@ -11,6 +11,11 @@
       "name": "session-tools",
       "source": "./general/session-tools",
       "description": "Universal helpers for agent sessions (handoff document for a fresh agent)"
+    },
+    {
+      "name": "review-tools",
+      "source": "./general/review-tools",
+      "description": "Review a finished code change against the request and coding standards, with a verdict (skill + script)"
     }
   ]
 }

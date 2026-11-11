@@ -7,6 +7,7 @@ marketplace: `agentic-coding`.
 |---|---|
 | `document-tools` | Reads a Word `.docx` the way Word shows it, a section at a time: Word's heading and list numbers, tracked changes as accepted, tables, notes, images and review comments, plus search and a check against Word itself (skill `read-docx`) |
 | `session-tools` | Project-independent session helpers: `handoff` compacts the conversation into a document a fresh agent can continue from (adapted from [mattpocock/skills](https://github.com/mattpocock/skills), MIT) |
+| `review-tools` | `change-review` checks a finished change against its request and the coding standards (`DEVELOPMENT.md`, the repo's own instructions) and reports `VERDICT: FAIL / NEEDS_WORK / PASS` with verified findings. A script collects the facts models miss: leftover files, removed tests and comments, new dependencies, unformatted changed files, the checks to run. Modes: read-only review, review and fix, or a check after each step of a larger plan. Built for local agents checking their own work in a fresh session (it is a plain Agent Skill, so Goose, Pi and OpenCode load it from `~/.agents/skills` too) and for Claude Code reviewing a local agent's work. Not yet tested in Copilot |
 
 ## General coding guidelines
 

@@ -1,0 +1,5 @@
+{
+  "name": "review-tools",
+  "description": "Check finished code changes against the request and coding standards, for agents reviewing their own or another agent's work",
+  "author": { "name": "Georgs" }
+}
