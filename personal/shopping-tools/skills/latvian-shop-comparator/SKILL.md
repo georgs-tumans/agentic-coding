@@ -25,7 +25,7 @@ Before searching, ensure you have a **precise product identifier**:
 - Model number / SKU / EAN if available
 - Key specifications (capacity, type, speed, etc.)
 
-If the user provides an incomplete description, ask clarifying questions first.
+If the user provides an incomplete description, ask clarifying questions first. In the same message, ask where to save the report (see Report Location), so the run doesn't stop at the end waiting for an answer.
 
 ## Trusted Seller Lists
 
@@ -133,13 +133,13 @@ When deciding which sellers to include in the final report (rules 1–4 decide, 
 ## Report Generation
 
 ### Report Location
-Save reports to the user's `~/Documents/` folder. If that folder doesn't exist or isn't writable (for example inside a sandbox), save to the current working directory and say so.
+Before you start searching, ask the user which folder to save the report in, and suggest `~/Documents/` as the default. Skip the question if the request already names a location. If the chosen folder doesn't exist or isn't writable (for example inside a sandbox), save to the current working directory and say so.
 
 Filename format: `<product_short_name>_comparison_<YYYY-MM-DD>.md`
 Example: `gskill_ripjaws_v_32gb_comparison_2026-10-23.md`
 
 ### Report Format
-Create a well-structured Markdown report with these sections:
+The report is a Markdown file built around comparison tables that are easy to scan: one row per shop, short cell values (no sentences inside cells), prices with the € sign, and the total with delivery in bold. Put explanations below the tables, not in them. Use these sections:
 
 ```markdown
 # <Product Full Name> — Price Comparison Report
