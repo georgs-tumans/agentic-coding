@@ -16,6 +16,11 @@
       "name": "review-tools",
       "source": "./general/review-tools",
       "description": "Review a finished code change against the request and coding standards, with a verdict (skill + script)"
+    },
+    {
+      "name": "shopping-tools",
+      "source": "./personal/shopping-tools",
+      "description": "Compare a product's prices across Latvian online shops and save a ranked report (skill)"
     }
   ]
 }
