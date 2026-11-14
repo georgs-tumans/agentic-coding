@@ -133,7 +133,7 @@ When deciding which sellers to include in the final report (rules 1–4 decide, 
 ## Report Generation
 
 ### Report Location
-Save reports to: `/home/georgs/Documents/`. If that folder doesn't exist or isn't writable (for example inside a sandbox), save to the current working directory and say so.
+Save reports to the user's `~/Documents/` folder. If that folder doesn't exist or isn't writable (for example inside a sandbox), save to the current working directory and say so.
 
 Filename format: `<product_short_name>_comparison_<YYYY-MM-DD>.md`
 Example: `gskill_ripjaws_v_32gb_comparison_2026-10-23.md`
@@ -232,7 +232,7 @@ Here are the top options I found:
 2. **<shop>** — €<price> — [Product Page](<url>)
    Rating: <rating>/5 (<count> reviews) | Stock: <status> | Delivery: <info>
 
-Full report saved to: /home/georgs/Documents/<filename>.md
+Full report saved to: <full path of the saved report>
 ```
 
 ## Tools to Use
