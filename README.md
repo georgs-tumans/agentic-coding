@@ -12,13 +12,26 @@ marketplace: `agentic-coding`.
 
 ## General coding guidelines
 
-`DEVELOPMENT.md` is a rulebook for all agentic coding (principles, comments, testing,
-verification before calling work done, per-language check commands, git, plans and docs, output
-format), independent of the plugins. To apply it in every session, whatever the workspace, import
-it from `~/.claude/CLAUDE.md` with `@/absolute/path/to/DEVELOPMENT.md`. Keep the path free of
-spaces, since imports may not parse them. To load it only when a task touches code, keep it out
-of the import and instead tell the agent in a global `AGENTS.md` (imported from
-`~/.claude/CLAUDE.md`) to read `/absolute/path/to/DEVELOPMENT.md` before coding work.
+`agent-guidelines/` holds the global instructions, independent of the plugins:
+
+| File | What it is |
+|---|---|
+| `DEVELOPMENT.md` | The rulebook for all agentic coding: principles, comments, testing, verification before calling work done, per-language check commands, git, plans and docs, output format |
+| `AGENTS.md` | The global instructions file: tells the agent to read `DEVELOPMENT.md` before coding work and repeats the essentials, since smaller models often skip that read |
+
+`AGENTS.md` names `DEVELOPMENT.md` by the absolute path `/home/georgs/.agents/DEVELOPMENT.md`;
+change it if you install elsewhere. Install both by linking them into `~/.agents`, which Goose,
+Pi, OpenCode and the local sandboxes read, then import `AGENTS.md` from `~/.claude/CLAUDE.md`
+with `@~/.agents/AGENTS.md`:
+
+```bash
+ln -sf "$PWD/agent-guidelines/AGENTS.md" "$PWD/agent-guidelines/DEVELOPMENT.md" ~/.agents/
+```
+
+Edits then go to this repo and apply everywhere at once. To apply the whole rulebook in every
+session instead, whatever the task, import `DEVELOPMENT.md` itself from `~/.claude/CLAUDE.md`
+(`@/absolute/path/to/DEVELOPMENT.md`). Keep import paths free of spaces, since imports may not
+parse them.
 
 The front-end rule in `DEVELOPMENT.md` names two external skills that this repo does not ship:
 `modern-web-guidance` and `chrome-extensions`, both from

@@ -38,13 +38,29 @@ Applies to every project. A repo's own `AGENTS.md`/`CLAUDE.md` adds to this and 
 
 - **Ask once per repo whether tests are wanted** and which framework — unless the repo already has tests or its own instructions say. Then follow that answer for the whole repo.
 - **Test-first when tests are in scope:** write the test, run it and see it fail for the expected reason, then write the minimal code to pass.
-- Test what the code MUST do. Never loosen a test to make it pass; a test that can't fail is worse than none. Cover the negative case and the boundary (at it and one step past).
-- Read values the code owns (limits, defaults, names, routes) from the production constant, don't copy them into the test. Literals only for external contracts (wire formats, file formats, user-facing text).
-- Pick inputs where the likely wrong implementation gives a different result (a "round once" test needs numbers where rounding per line differs). Assert on outputs, not just exit codes or "no exception". Reuse the project's fixtures and helpers.
+- **Tests don't replace the fix.** A change that adds tests but leaves the code broken isn't done.
+
+Every new test must pass all of these:
+
+1. **It fails without your change.** Once it passes, prove it: `git stash push -- <changed source files>`, run the new tests, check they fail for the reason you expect, then `git stash pop`. A test that still passes tests nothing: fix it or delete it.
+2. **It goes through the changed code.** Call the entry point that had the bug (the client, the CLI command, the service method), not a helper next to it. Fakes may replace only what's outside the change (network, clock, disk), never the code under test.
+3. **It asserts the exact expected value**: the whole error message, the whole CSV row, the exact amount. Not `!= nil`, `NotEmpty`, "contains 'error'", or "A or B". Assert on outputs, not just exit codes or "no exception".
+4. **Its expected values come from the spec**, never from running your code and copying its output. Read values the code owns (limits, defaults, names, routes) from the production constant; literals only for external contracts (wire formats, file formats, user-facing text).
+5. **Its inputs tell right from wrong:** pick inputs where the likely wrong implementation gives a different result — an odd amount for half-up rounding, numbers where rounding per line and per group differ, both DST transition days, the boundary and one step past it, the failing item in the middle with more than one worker. Cover the negative case.
+6. **One test per requirement or bug**, named after it (`TestShortPageDoesNotEndSync`). Several inputs for the same rule go in one table test, not in copies of the same test.
+7. **It's deterministic.** No real clock, network or sleeps: pass the date in, use fakes or `httptest`, and put a timeout around anything that could hang.
+8. **Its test data obeys the business rules** (an express shipment has the express price). Reuse the project's fixtures and helpers; don't touch fixtures you don't need.
+
+Existing tests: change them only where the requested behaviour changed, and then only the expected value. Never loosen an assertion to make a test pass. Tests are code: no debug prints, no notes to yourself ("wait, actually…"), no tests for behaviour you didn't change.
 
 ## Verify before you say "done"
 
-Code that has not been built and checked is not finished. After every change:
+Code that has not been built and checked is not finished. "Done" means: it builds, the type checker and linters the project uses pass, and the tests pass. A failing build is never done, however small the remaining error.
+
+- **Build after every edit**, not only at the end, so the code compiles at every point where you could be stopped (time limit, context limit, crash). Take the next step only from a building state; if an edit breaks the build, fix that first.
+- **If you can't get it green**, don't call it done or "complete": say it's unfinished, which check fails, and show the error lines.
+
+After every change:
 
 1. **Run the checks.** Prefer the project's own commands (Makefile, `package.json` scripts, CI config, README), otherwise the defaults below. Run the ones that apply to the changed files, plus the tests that cover the affected code (not just the new test). Format the changed files after your last edit (`gofmt -w`, `dotnet format`, `ruff format`); a passing linter doesn't prove formatting.
 2. **Report honestly.** Say which commands you ran and whether they passed; show the relevant error lines on failure, including failures that existed before your change. Never claim a check passed without running it, and never report an action you didn't perform.
