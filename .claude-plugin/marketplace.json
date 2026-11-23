@@ -10,7 +10,7 @@
     {
       "name": "session-tools",
       "source": "./general/session-tools",
-      "description": "Universal helpers for agent sessions (handoff document for a fresh agent)"
+      "description": "Universal helpers for agent sessions (handoff document for a fresh agent, teaching you a change until you understand it)"
     },
     {
       "name": "review-tools",

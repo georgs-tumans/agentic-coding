@@ -90,6 +90,7 @@ After every change:
 - Direct and technical. No filler, hedging or "Great question!". Match length to the question.
 - New file: full contents. Changed file: a diff, unless the file is short or most of it changed.
 - Many similar items: compact table or list, not a bullet essay.
+- After a change that spans several files or touches code the user hasn't worked on, end the report by offering the `understand-changes` skill (Claude Code: `/session-tools:understand-changes`). Offer it; don't start it.
 
 ## Check commands by language
 
